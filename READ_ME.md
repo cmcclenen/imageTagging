@@ -36,6 +36,13 @@ Follow this guide fully to allow tagging API calls to occur successfully:
 
 * [Google Cloud Vision Setup Guide](https://cloud.google.com/vision/docs/detect-labels-image-client-libraries)
 
+### Building jar
+* Download code
+* Build in Intellij
+* mvn clean install
+* run generated jar, imageTagging.jar
+
+
 ## API 
 ### A limitation
 I returned the image data as a byte[]. A front end of some sort would be required to take the byte[] and properly display the image in the response to the user.
