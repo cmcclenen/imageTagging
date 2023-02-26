@@ -1,7 +1,10 @@
 package com.heb.imageTagging.model;
 
+import com.heb.imageTagging.controller.ImageMetadataController;
 import lombok.*;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
@@ -25,6 +28,9 @@ public class ImageMetadata {
     private String label;
     private boolean taggingEnabled;
 
+
+    private static final Logger logger = LoggerFactory.getLogger(ImageMetadata.class);
+
     @ManyToMany
     @JoinTable(
             name = "image_tag",
@@ -36,8 +42,7 @@ public class ImageMetadata {
 
     public ImageMetadata(CreateImageTaggingRequest createImageRequest) throws IOException {
         this.setImageData(createImageRequest.getFile(), createImageRequest.getUrl());
-        this.label = createImageRequest.getLabel() != null ? createImageRequest.getLabel() :
-                "A picture uploaded by our lovely user";
+        this.setLabel(createImageRequest.getLabel());
         this.taggingEnabled = createImageRequest.getTaggingEnabled();
     }
 
@@ -55,5 +60,10 @@ public class ImageMetadata {
             IOUtils.copy(conn.getInputStream(), baos);
             this.imageData = baos.toByteArray();
         } else {this.imageData = imageFile.getBytes();}
+    }
+    //Helper method to provide a label to the image in case the user did not provide one
+    private void setLabel(String userLabel){
+        boolean labelProvided = !userLabel.isEmpty();
+        this.label = labelProvided ? userLabel: "A picture uploaded by our lovely user";
     }
 }
