@@ -68,13 +68,13 @@ Either file or url is required. taggingEnabled is required. Label is Optional
 ### localhost:8080/images/{imageId} GET
 Behavoir:
 * Searches database for image by image Id
-* Return image as byte[] and any metadata saved with it
+* Return image(s) as byte[] and any metadata saved with it
 
 ### localhost:8080/images/?objects={dog,cat} GET 
 Behavoir:
 * Search database for all images that match any of the tags included in the query
   * So in the above example, return all images that were tagged as containing a dog or a cat
-* Return image as byte[] and any metadata saved with it
+* Return image(s) as byte[] and any metadata saved with it
 
 
 ### localhost:8080/images/ GET
