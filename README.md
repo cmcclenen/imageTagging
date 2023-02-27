@@ -76,11 +76,6 @@ Behavoir:
   * So in the above example, return all images that were tagged as containing a dog or a cat
 * Return image as byte[] and any metadata saved with it
 
-### localhost:8080/images/?objects={dog,cat} GET
-Behavoir:
-* Search database for all images that match any of the tags included in the query
-    * So in the above example, return all images that were tagged as containing a dog or a cat
-* Return images as byte[] and any metadata saved with them
 
 ### localhost:8080/images/ GET
 Behavoir:
